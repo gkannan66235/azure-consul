@@ -16,7 +16,7 @@ variable "consul_datacenter" {
 }
 
 variable "os" {
-  type = "string"
+  type = string
 }
 
 variable "consul_version" {
@@ -28,34 +28,39 @@ variable "vm_size" {
 }
 
 variable "private_subnet_ids" {
-  type        = "list"
+  type        = list
   description = "ID(s) of pre-existing private subnet(s) ID where the scale set should be created"
 }
 
+variable "private_subnet" {
+  type = string
+}
+
+
 variable "public_key_data" {
-  type = "string"
+  type = string
 }
 
 variable "auto_join_subscription_id" {
-  type = "string"
+  type = string
 }
 
 variable "auto_join_client_id" {
-  type = "string"
+  type = string
 }
 
 variable "auto_join_client_secret" {
-  type = "string"
+  type = string
 }
 
 variable "auto_join_tenant_id" {
-  type = "string"
+  type = string
 }
 
 # Optional variables
 variable "consul_join_wan" {
   default     = [""]
-  type        = "list"
+  type        = list
   description = "List of Consul Datacenters (as per var.consul_datacenter) to join across WAN (if deploying across regions/datacenters)"
 }
 

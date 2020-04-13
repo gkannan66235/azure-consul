@@ -2,7 +2,7 @@
 // Variables
 //
 variable "os" {
-  type = "string"
+  type = string
 }
 
 //
