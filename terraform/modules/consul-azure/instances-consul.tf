@@ -43,9 +43,9 @@ resource "azurerm_virtual_machine" "consul" {
     }
   }
 
-  # tags {
-  #   consul_datacenter = var.consul_datacenter
-  # }
+  tags = {
+    consul_datacenter = var.consul_datacenter
+  }
 }
 
 resource "azurerm_network_interface" "consul" {
@@ -61,9 +61,9 @@ resource "azurerm_network_interface" "consul" {
     private_ip_address_allocation = "Dynamic"
   }
 
-  # tags {
-  #   consul_datacenter = var.consul_datacenter
-  # }
+  tags = {
+    consul_datacenter = var.consul_datacenter
+  }
 }
 
 data "template_file" "init" {

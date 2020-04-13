@@ -40,3 +40,13 @@ module "network" {
   public_key_data       = "${module.ssh_key.public_key_data}"
 }
 ```
+
+## Update ssh Key
+
+```
+az vm user update \
+  --resource-group consul-single-region \
+  --name consul-westus-0 \
+  --username azure-user \
+  --ssh-key-value ~/.ssh/id_rsa.pub
+```
