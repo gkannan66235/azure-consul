@@ -27,7 +27,7 @@ variable "vm_size" {
   description = "Azure virtual machine size"
 }
 
-variable "subnet_private_ids" {
+variable "subnet_private_id" {
   type        = string
 }
 
