@@ -21,7 +21,7 @@ module "network_westus" {
   source                = "../modules/network-azure"
   resource_group_name   = azurerm_resource_group.main.name
   location              = "westus"
-  network_name          = "consul-westus"
+  network_name          = "consul-dev"
   network_cidr          = "10.0.0.0/16"
   network_cidrs_public  = "10.0.0.0/24"
   network_cidrs_private = "10.0.1.0/24"
@@ -32,7 +32,7 @@ module "network_westus" {
 module "consul_azure_westus" {
   source                    = "../modules/consul-azure"
   resource_group_name       = azurerm_resource_group.main.name
-  consul_datacenter         = "consul-westus"
+  consul_environment         = "consul-dev"
   location                  = "westus"
   cluster_size              = var.cluster_size
   private_subnet_ids        = module.network_westus.subnet_private_ids

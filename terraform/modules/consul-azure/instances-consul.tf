@@ -1,7 +1,7 @@
 resource "azurerm_virtual_machine" "consul" {
   count = var.cluster_size
 
-  name                  = "${var.consul_datacenter}-${count.index}"
+  name                  = "${var.consul_environment}-${count.index}"
   location              = var.location
   resource_group_name   = var.resource_group_name
   network_interface_ids = ["${element(azurerm_network_interface.consul.*.id,count.index)}"]
@@ -21,14 +21,14 @@ resource "azurerm_virtual_machine" "consul" {
   }
 
   storage_os_disk {
-    name              = "${var.consul_datacenter}-${count.index}"
+    name              = "${var.consul_environment}-${count.index}"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
   }
 
   os_profile {
-    computer_name  = "${var.consul_datacenter}-${count.index}"
+    computer_name  = "${var.consul_environment}-${count.index}"
     admin_username = module.images.os_user
     admin_password = "none"
     custom_data    = base64encode(data.template_file.init.rendered)
@@ -44,25 +44,25 @@ resource "azurerm_virtual_machine" "consul" {
   }
 
   tags = {
-    consul_datacenter = var.consul_datacenter
+    consul_environment = var.consul_environment
   }
 }
 
 resource "azurerm_network_interface" "consul" {
   count = var.cluster_size
 
-  name                = "${var.consul_datacenter}-${count.index}"
+  name                = "${var.consul_environment}-${count.index}"
   location            = var.location
   resource_group_name = var.resource_group_name
 
   ip_configuration {
-    name                          = "${var.consul_datacenter}-${count.index}"
-    subnet_id                     = "${var.private_subnet}"
+    name                          = "${var.consul_environment}-${count.index}"
+    subnet_id                     = var.private_subnet
     private_ip_address_allocation = "Dynamic"
   }
 
   tags = {
-    consul_datacenter = var.consul_datacenter
+    consul_environment = var.consul_environment
   }
 }
 
@@ -72,7 +72,7 @@ data "template_file" "init" {
   vars = {
     cluster_size                = var.cluster_size
     consul_version              = var.consul_version
-    consul_datacenter           = var.consul_datacenter
+    consul_environment           = var.consul_environment
     consul_join_wan             = join(" ", var.consul_join_wan)
     auto_join_subscription_id   = var.auto_join_subscription_id
     auto_join_tenant_id         = var.auto_join_tenant_id

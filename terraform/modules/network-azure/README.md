@@ -46,7 +46,7 @@ module "network" {
 ```
 az vm user update \
   --resource-group consul-single-region \
-  --name consul-westus-0 \
+  --name consul-dev-0 \
   --username azure-user \
   --ssh-key-value ~/.ssh/id_rsa.pub
 ```

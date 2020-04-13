@@ -11,7 +11,7 @@ variable "cluster_size" {
   description = "Number of instances to launch in the cluster"
 }
 
-variable "consul_datacenter" {
+variable "consul_environment" {
   description = "Name to apply to the Consul cluster (used for tagging and auto-join purposes)"
 }
 
@@ -61,7 +61,7 @@ variable "auto_join_tenant_id" {
 variable "consul_join_wan" {
   default     = [""]
   type        = list
-  description = "List of Consul Datacenters (as per var.consul_datacenter) to join across WAN (if deploying across regions/datacenters)"
+  description = "List of Consul Datacenters (as per var.consul_environment) to join across WAN (if deploying across regions/datacenters)"
 }
 
 # Outputs
