@@ -10,6 +10,8 @@
 
 # SSH Keys
 *.pem
+env.sh 
+
 
 # Other
 .DS_store
