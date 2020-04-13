@@ -32,10 +32,10 @@ module "network_westus" {
 module "consul_azure_westus" {
   source                    = "../modules/consul-azure"
   resource_group_name       = azurerm_resource_group.main.name
-  consul_environment         = "consul-dev"
+  consul_environment        = "consul-dev"
   location                  = "westus"
   cluster_size              = var.cluster_size
-  private_subnet_ids        = module.network_westus.subnet_private_ids
+  subnet_private_ids        = module.network_westus.subnet_private_ids
   consul_version            = var.consul_version
   vm_size                   = var.consul_vm_size
   os                        = var.os
@@ -44,6 +44,5 @@ module "consul_azure_westus" {
   auto_join_tenant_id       = var.auto_join_tenant_id
   auto_join_client_id       = var.auto_join_client_id
   auto_join_client_secret   = var.auto_join_client_secret
-  private_subnet            = module.network_westus.private_subnet1
 }
 

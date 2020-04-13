@@ -1,5 +1,4 @@
 resource "azurerm_subnet" "public" {
-  count                = 1 
   name                 = "${var.network_name}-public"
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.main.name
@@ -7,7 +6,6 @@ resource "azurerm_subnet" "public" {
 }
 
 resource "azurerm_subnet" "private" {
-  count                = 1 
   name                 = "${var.network_name}-private"
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.main.name

@@ -27,15 +27,9 @@ variable "vm_size" {
   description = "Azure virtual machine size"
 }
 
-variable "private_subnet_ids" {
-  type        = list
-  description = "ID(s) of pre-existing private subnet(s) ID where the scale set should be created"
+variable "subnet_private_ids" {
+  type        = string
 }
-
-variable "private_subnet" {
-  type = string
-}
-
 
 variable "public_key_data" {
   type = string

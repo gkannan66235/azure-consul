@@ -57,7 +57,7 @@ resource "azurerm_network_interface" "consul" {
 
   ip_configuration {
     name                          = "${var.consul_environment}-${count.index}"
-    subnet_id                     = var.private_subnet
+    subnet_id                     = var.subnet_private_ids
     private_ip_address_allocation = "Dynamic"
   }
 

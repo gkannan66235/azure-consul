@@ -46,18 +46,6 @@ variable "private_key_filename" {
   description = "Name of the SSH private key"
 }
 
-# Outputs
-
-# output "jumphost_westus_ssh_connection_strings" {
-#   value = formatlist(
-#     "ssh-add %s && ssh -A -i %s %s@%s",
-#     var.private_key_filename,
-#     var.private_key_filename,
-#     module.network_westus.jumphost_username,
-#     module.network_westus.jumphost_ips_public,
-#   )
-# }
-
 output "consul_private_ips_westus" {
   value = formatlist(
     "ssh %s@%s",

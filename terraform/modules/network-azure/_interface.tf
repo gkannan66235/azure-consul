@@ -42,13 +42,10 @@ output "virtual_network_id" {
 }
 
 output "subnet_public_ids" {
-  value = ["${azurerm_subnet.public.*.id}"]
+  value = "${azurerm_subnet.public.id}"
 }
 
 output "subnet_private_ids" {
-  value = ["${azurerm_subnet.private.*.id}"]
+  value = "${azurerm_subnet.private.id}"
 }
 
-output "private_subnet1" {
-  value = "${azurerm_subnet.private.0.id}"
-}
