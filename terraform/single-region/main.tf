@@ -7,7 +7,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "main" {
-  name     = "consul-single-region"
+  name     = "consul-dev-rg"
   location = "westus"
 }
 
