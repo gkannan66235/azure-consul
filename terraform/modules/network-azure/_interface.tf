@@ -19,6 +19,10 @@ variable "public_key_data" {
   type = string
 }
 
+variable "backend_address_pool_id" {
+  type = string
+}
+
 # Optional Variables
 variable "network_cidr" {
   default = "10.0.0.0/16"
@@ -47,5 +51,9 @@ output "subnet_public_id" {
 
 output "subnet_private_id" {
   value = "${azurerm_subnet.private.id}"
+}
+
+output "backend_address_pool_id" {
+  value = "${azurerm_lb_backend_address_pool.lb.id}"
 }
 

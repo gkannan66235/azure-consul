@@ -3,6 +3,7 @@ resource "azurerm_network_security_group" "public" {
   location            = var.location
   resource_group_name = var.resource_group_name
 }
+
 resource "azurerm_network_security_rule" "consul-ui" {
   name                        = "${var.network_name}-consul-ui"
   resource_group_name         = var.resource_group_name
@@ -18,8 +19,6 @@ resource "azurerm_network_security_rule" "consul-ui" {
   destination_port_range     = "8500"
   destination_address_prefix = "*"
 }
-
-
 # Private Subnet NSG Rules
 
 resource "azurerm_network_security_group" "private" {

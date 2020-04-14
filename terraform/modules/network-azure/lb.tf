@@ -29,9 +29,11 @@ resource "azurerm_lb_rule" "lb" {
   loadbalancer_id                = azurerm_lb.lb.id
   name                           = "LBRule"
   protocol                       = "Tcp"
-  frontend_port                  = 8500
+  frontend_port                  = 80
   backend_port                   = 8500
   frontend_ip_configuration_name = "PublicIPAddress"
+  backend_address_pool_id        = var.backend_address_pool_id
+  probe_id                       = azurerm_lb_probe.lb.id
 }
 
 resource "azurerm_lb_probe" "lb" {

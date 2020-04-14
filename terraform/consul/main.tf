@@ -27,6 +27,7 @@ module "network_westus" {
   network_cidrs_private = "10.0.0.32/27"
   os                    = var.os
   public_key_data       = module.ssh_key.public_key_data
+  backend_address_pool_id   = module.network_westus.backend_address_pool_id
 }
 
 module "consul_azure_westus" {
@@ -36,6 +37,7 @@ module "consul_azure_westus" {
   location                  = "westus"
   cluster_size              = var.cluster_size
   subnet_private_id         = module.network_westus.subnet_private_id
+  backend_address_pool_id   = module.network_westus.backend_address_pool_id
   consul_version            = var.consul_version
   vm_size                   = var.consul_vm_size
   os                        = var.os
