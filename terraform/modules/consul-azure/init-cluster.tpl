@@ -164,7 +164,7 @@ sudo tee /etc/consul.d/consul-default.json <<EOF
   "client_addr": "0.0.0.0",
   "log_level": "INFO",
   "ui": true,
-  "retry_join": ["provider=azure tag_name=consul_environment tag_value=${consul_environment} subscription_id=${auto_join_subscription_id} tenant_id=${auto_join_tenant_id} client_id=${auto_join_client_id} secret_access_key=${auto_join_secret_access_key}"]
+  "retry_join": ["provider=azure tag_name=consul_environment tag_value=${consul_environment} subscription_id=${auto_join_subscription_id} tenant_id=${auto_join_tenant_id} client_id=${auto_join_client_id} secret_access_key=\"${auto_join_secret_access_key}\""]
 }
 EOF
 

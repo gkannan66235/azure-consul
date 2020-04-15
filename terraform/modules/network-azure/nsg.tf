@@ -27,14 +27,14 @@ resource "azurerm_network_security_group" "private" {
   resource_group_name = var.resource_group_name
 
   security_rule {
-    name                       = "consul-ui"
+    name                       = "consul-ui-ssh"
     priority                   = 100
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_ranges     = ["22","8500"]
-    source_address_prefix      = "205.145.64.0/18" # 205.145.64.0/18
+    source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
 }
