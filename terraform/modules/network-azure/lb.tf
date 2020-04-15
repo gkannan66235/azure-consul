@@ -42,3 +42,12 @@ resource "azurerm_lb_probe" "lb" {
   name                = "consul-ui"
   port                = 8500
 }
+resource "azurerm_lb_nat_rule" "lb" {
+  resource_group_name            = var.resource_group_name
+  loadbalancer_id                = azurerm_lb.lb.id
+  name                           = "SSH"
+  protocol                       = "Tcp"
+  frontend_port                  = 22
+  backend_port                   = 22
+  frontend_ip_configuration_name = "PublicIPAddress"
+}

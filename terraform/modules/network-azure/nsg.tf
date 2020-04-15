@@ -4,21 +4,21 @@ resource "azurerm_network_security_group" "public" {
   resource_group_name = var.resource_group_name
 }
 
-resource "azurerm_network_security_rule" "consul-ui" {
-  name                        = "${var.network_name}-consul-ui"
-  resource_group_name         = var.resource_group_name
-  network_security_group_name = azurerm_network_security_group.public.name
+# resource "azurerm_network_security_rule" "consul-ui" {
+#   name                        = "${var.network_name}-consul-ui"
+#   resource_group_name         = var.resource_group_name
+#   network_security_group_name = azurerm_network_security_group.public.name
 
-  priority  = 100
-  direction = "Inbound"
-  access    = "Allow"
-  protocol  = "Tcp"
+#   priority  = 100
+#   direction = "Inbound"
+#   access    = "Allow"
+#   protocol  = "Tcp"
 
-  source_address_prefix      = "*"
-  source_port_range          = "*"
-  destination_port_range     = "8500"
-  destination_address_prefix = "*"
-}
+#   source_address_prefix      = "*"
+#   source_port_range          = "*"
+#   destination_port_range     = "8500"
+#   destination_address_prefix = "*"
+# }
 # Private Subnet NSG Rules
 
 resource "azurerm_network_security_group" "private" {
@@ -34,7 +34,7 @@ resource "azurerm_network_security_group" "private" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "8500"
-    source_address_prefix      = "*"
+    source_address_prefix      = "*" # 205.145.64.0/18
     destination_address_prefix = "*"
   }
 }
