@@ -38,22 +38,26 @@ variable "network_cidrs_private" {
 
 # Outputs
 output "virtual_network_name" {
-  value = "${azurerm_virtual_network.main.name}"
+  value = azurerm_virtual_network.main.name
 }
 
 output "virtual_network_id" {
-  value = "${azurerm_virtual_network.main.id}"
+  value = azurerm_virtual_network.main.id
 }
 
 output "subnet_public_id" {
-  value = "${azurerm_subnet.public.id}"
+  value = azurerm_subnet.public.id
 }
 
 output "subnet_private_id" {
-  value = "${azurerm_subnet.private.id}"
+  value = azurerm_subnet.private.id
 }
 
 output "backend_address_pool_id" {
-  value = "${azurerm_lb_backend_address_pool.lb.id}"
+  value = azurerm_lb_backend_address_pool.lb.id
+}
+
+output "nat_rule_id" {
+  value =  azurerm_lb_nat_rule.lb.id
 }
 

@@ -72,6 +72,15 @@ resource "azurerm_network_interface_backend_address_pool_association" "consul" {
   backend_address_pool_id = var.backend_address_pool_id
 }
 
+resource "azurerm_network_interface_nat_rule_association" "lb" {
+//  count = var.cluster_size
+
+  network_interface_id    = azurerm_network_interface.consul.0.id
+  ip_configuration_name   = "${var.consul_environment}-0"
+  nat_rule_id             = var.nat_rule_id
+  #azurerm_lb_nat_rule.example.id
+}
+
 data "template_file" "init" {
   template = "${file("${path.module}/init-cluster.tpl")}"
 

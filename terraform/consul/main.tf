@@ -38,6 +38,7 @@ module "consul_azure_westus" {
   cluster_size              = var.cluster_size
   subnet_private_id         = module.network_westus.subnet_private_id
   backend_address_pool_id   = module.network_westus.backend_address_pool_id
+  nat_rule_id               = module.network_westus.nat_rule_id
   consul_version            = var.consul_version
   vm_size                   = var.consul_vm_size
   os                        = var.os

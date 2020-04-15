@@ -35,6 +35,10 @@ variable "backend_address_pool_id" {
   type        = string
 }
 
+variable "nat_rule_id" {
+  type        = string
+}
+
 variable "public_key_data" {
   type = string
 }
