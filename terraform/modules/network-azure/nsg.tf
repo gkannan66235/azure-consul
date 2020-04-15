@@ -33,7 +33,7 @@ resource "azurerm_network_security_group" "private" {
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_range     = "8500"
+    destination_port_ranges     = "22,8500"
     source_address_prefix      = "*" # 205.145.64.0/18
     destination_address_prefix = "*"
   }
