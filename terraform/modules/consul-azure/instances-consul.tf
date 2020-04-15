@@ -4,7 +4,7 @@ resource "azurerm_virtual_machine" "consul" {
   name                  = "${var.consul_environment}-${count.index}"
   location              = var.location
   resource_group_name   = var.resource_group_name
-  network_interface_ids = ["${element(azurerm_network_interface.consul.*.id,count.index)}"]
+  network_interface_ids = [element(azurerm_network_interface.consul.*.id,count.index)]
   vm_size               = var.vm_size
 
   # Uncomment this line to delete the OS disk automatically when deleting the VM
@@ -82,7 +82,7 @@ resource "azurerm_network_interface_nat_rule_association" "lb" {
 }
 
 data "template_file" "init" {
-  template = "${file("${path.module}/init-cluster.tpl")}"
+  template = file("${path.module}/init-cluster.tpl")
 
   vars = {
     cluster_size                = var.cluster_size

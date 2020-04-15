@@ -5,5 +5,5 @@ terraform {
 module "images" {
   source = "../images-azure"
 
-  os = "${var.os}"
+  os = var.os
 }

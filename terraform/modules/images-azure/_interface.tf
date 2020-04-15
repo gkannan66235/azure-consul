@@ -51,21 +51,21 @@ variable "version_map" {
 // Outputs
 //
 output "os_user" {
-  value = "${var.user}"
+  value = var.user
 }
 
 output "base_publisher" {
-  value = "${lookup(var.publisher_map,var.os)}"
+  value = lookup(var.publisher_map,var.os)
 }
 
 output "base_offer" {
-  value = "${lookup(var.offer_map,var.os)}"
+  value = lookup(var.offer_map,var.os)
 }
 
 output "base_sku" {
-  value = "${lookup(var.sku_map,var.os)}"
+  value = lookup(var.sku_map,var.os)
 }
 
 output "base_version" {
-  value = "${lookup(var.version_map,var.os)}"
+  value = lookup(var.version_map,var.os)
 }
