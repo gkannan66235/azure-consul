@@ -11,6 +11,11 @@ variable "cluster_size" {
   description = "Number of instances to launch in the cluster"
 }
 
+variable "availability_zones" {
+  default = [
+  "1", "2", "3"]
+}
+
 variable "consul_environment" {
   description = "Name to apply to the Consul cluster (used for tagging and auto-join purposes)"
 }

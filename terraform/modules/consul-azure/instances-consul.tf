@@ -6,6 +6,7 @@ resource "azurerm_virtual_machine" "consul" {
   resource_group_name   = var.resource_group_name
   network_interface_ids = [element(azurerm_network_interface.consul.*.id,count.index)]
   vm_size               = var.vm_size
+  zones                 = [element(var.availability_zones, (count.index))]
 
   # Uncomment this line to delete the OS disk automatically when deleting the VM
   delete_os_disk_on_termination = true
@@ -16,7 +17,7 @@ resource "azurerm_virtual_machine" "consul" {
   storage_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
-    sku       = "16.04-LTS"
+    sku       = "18.04-LTS"
     version   = "latest"
   }
 
@@ -73,12 +74,9 @@ resource "azurerm_network_interface_backend_address_pool_association" "consul" {
 }
 
 resource "azurerm_network_interface_nat_rule_association" "lb" {
-//  count = var.cluster_size
-
   network_interface_id    = azurerm_network_interface.consul.0.id
   ip_configuration_name   = "${var.consul_environment}-0"
   nat_rule_id             = var.nat_rule_id
-  #azurerm_lb_nat_rule.example.id
 }
 
 data "template_file" "init" {
