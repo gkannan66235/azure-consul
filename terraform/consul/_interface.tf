@@ -27,7 +27,7 @@ variable "cluster_size" {
 }
 
 variable "consul_vm_size" {
-  default     = "Standard_A0"
+  default     = "Standard_A1_v2"
   description = "Azure virtual machine size for Consul cluster"
 }
 
@@ -46,11 +46,11 @@ variable "private_key_filename" {
   description = "Name of the SSH private key"
 }
 
-output "consul_private_ips_westus" {
+output "consul_private_ips" {
   value = formatlist(
     "ssh %s@%s",
-    module.consul_azure_westus.os_user,
-    module.consul_azure_westus.consul_private_ips,
+    module.consul_azure.os_user,
+    module.consul_azure.consul_private_ips,
   )
 }
 
