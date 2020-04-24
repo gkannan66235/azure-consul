@@ -68,6 +68,7 @@ resource "azurerm_network_interface" "consul" {
 }
 resource "azurerm_network_interface_backend_address_pool_association" "consul" {
   count = var.cluster_size
+  depends_on  = [azurerm_virtual_machine.consul]
   network_interface_id    = element(azurerm_network_interface.consul.*.id,count.index)
   ip_configuration_name   = "${var.consul_environment}-${count.index}"
   backend_address_pool_id = var.backend_address_pool_id
